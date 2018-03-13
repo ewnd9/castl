@@ -17,10 +17,11 @@
 
 (function () {
     "use strict";
-    process.env['LUA_PATH'] = process.env['LUA_PATH'] + ";/usr/local/lib/node_modules/castl/lua/?.lua;/usr/lib/node_modules/castl/lua/?.lua;";
+
+    var path = require('path');
+    process.env['LUA_PATH'] = [process.env['LUA_PATH'], path.resolve(`${__dirname}/../lua/?.lua`)].join(";");
 
     var exec = require('child_process').exec;
-    var path = require("path");
     var babel = require("babel-core");
     var parsername = "esprima";
     var execute = true;
